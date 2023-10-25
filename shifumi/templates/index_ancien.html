@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeu Pierre-Papier-Ciseaux</title>
+</head>
+<body>
+    <h1>Jeu Pierre-Papier-Ciseaux</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    <form action="/choose" method="post">
+        <button type="submit" name="choice" value="Roche">Roche</button>
+        <button type="submit" name="choice" value="Papier">Papier</button>
+        <button type="submit" name="choice" value="Ciseaux">Ciseaux</button>
+    </form>
+    <p>Résultat : <span id="result"></span></p>
+    <button id="toggleWebcam">Activer/Désactiver Webcam</button>
+    <script>
+        var toggleButton = document.getElementById('toggleWebcam');
+        var resultSpan = document.getElementById('result');
+        var webcamEnabled = {{ webcam_enabled|lower }};
+
+        // Mettre à jour le texte du bouton en fonction de l'état de la webcam
+        function updateToggleButton() {
+            if (webcamEnabled) {
+                toggleButton.textContent = 'Désactiver Webcam';
+            } else {
+                toggleButton.textContent = 'Activer Webcam';
+            }
+        }
+
+        // Activer/Désactiver la reconnaissance webcam
+        toggleButton.addEventListener('click', function() {
+            webcamEnabled = !webcamEnabled;
+            updateToggleButton();
+
+            // Faites une requête AJAX pour activer/désactiver la reconnaissance webcam sur le serveur
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/toggle_webcam', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send();
+        });
+
+        // Mettre à jour le résultat en fonction des données du serveur
+        function updateResult() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/result', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resultSpan.textContent = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        // Mettre à jour le bouton et le résultat au chargement de la page
+        updateToggleButton();
+        updateResult();
+    </script>
+</body>
+</html>

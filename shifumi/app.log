@@ -1,0 +1,57 @@
+2023-10-25 01:17:34,443 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:17:36,246 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:17:39,490 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:17:41,655 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:17:42,554 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:20:49,344 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:20:51,636 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:20:53,648 - app - ERROR - Erreur lors de la prédiction en direct : a bytes-like object is required, not 'str'
+2023-10-25 01:21:04,911 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:21:05,935 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:21:06,920 - app - ERROR - Erreur lors de la prédiction en direct : a bytes-like object is required, not 'str'
+2023-10-25 01:21:07,947 - app - ERROR - Erreur lors de la prédiction en direct : a bytes-like object is required, not 'str'
+2023-10-25 01:21:10,679 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:21:12,688 - app - ERROR - Erreur lors de la prédiction en direct : a bytes-like object is required, not 'str'
+2023-10-25 01:22:02,406 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:22:04,290 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:22:06,270 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:22:06,345 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7f40b8381e40>
+2023-10-25 01:22:08,245 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:22:08,281 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7f40b82a4e50>
+2023-10-25 01:22:09,214 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:22:10,253 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7f40b82a5760>
+2023-10-25 01:22:11,226 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7f40b82a5b70>
+2023-10-25 01:22:12,578 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:22:14,590 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7f40b82a5940>
+2023-10-25 01:23:49,442 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:23:53,978 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:23:56,009 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fb26845c310>
+2023-10-25 01:24:02,086 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:24:04,095 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fb26837c9f0>
+2023-10-25 01:24:05,510 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:24:07,522 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fb26837ccc0>
+2023-10-25 01:25:24,661 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:25:44,358 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:25:46,390 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc484488ae0>
+2023-10-25 01:25:51,143 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:25:53,151 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc4843a4ef0>
+2023-10-25 01:25:53,848 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:25:55,854 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc4843a4c20>
+2023-10-25 01:25:59,556 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:26:01,563 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc4843a4ea0>
+2023-10-25 01:27:16,636 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:27:18,648 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc4843a5800>
+2023-10-25 01:27:22,161 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:27:24,170 - app - ERROR - Erreur lors de la prédiction en direct : cannot identify image file <_io.BytesIO object at 0x7fc4843a6ac0>
+2023-10-25 01:29:19,321 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:29:21,963 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:32:53,690 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:32:55,465 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:05,192 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:07,536 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:09,101 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:09,948 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:37,094 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:33:44,545 - app - INFO - Requête POST reçue pour /play_webcam avec succès.
+2023-10-25 01:34:50,761 - app - INFO - Requête GET reçue pour /play_webcam.
+2023-10-25 01:43:50,808 - app - INFO - Requête GET reçue pour /play_webcam.

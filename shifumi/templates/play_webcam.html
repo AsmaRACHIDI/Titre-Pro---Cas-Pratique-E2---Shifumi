@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shifumi avec la Caméra</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <h1>Shifumi avec la Caméra</h1>
+    <video id="video-feed" width="640" height="480" autoplay></video>
+    <br>
+    <button id="capture-button">Jouer !</button>
+    <br>
+    <div id="prediction-result">Prédiction : <span id="prediction-value"></span></div>
+    <div id="computer-choice">Choix de l'ordinateur : <span id="computer-choice-value"></span></div>
+    <div id="result">Résultat : <span id="result-value"></span></div>
+    <div id="user-score">Score Utilisateur : <span id="user-score-value"></span></div>
+    <div id="computer-score">Score Ordinateur : <span id="computer-score-value"></span></div>
+    <br>
+    <div id="button-container">
+      <button id="reset-button">Réinitialiser le Score</button>
+      <button id="home-button" onclick="window.location.href = '/';">Revenir à la page d'accueil</button>
+    </div>
+  </body>
+
+  <script>
+    const video = document.getElementById('video-feed');
+    const captureButton = document.getElementById('capture-button');
+    const predictionResult = document.getElementById('prediction-result');
+    const predictionValue = document.getElementById('prediction-value');
+    const computerChoice = document.getElementById('computer-choice-value');
+    const result = document.getElementById('result-value');
+    const userScore = document.getElementById('user-score-value');
+    const computerScore = document.getElementById('computer-score-value');
+    const resetButton = document.getElementById('reset-button');
+
+    let userScoreValue = 0;
+    let computerScoreValue = 0;
+
+    // Fonction pour activer la caméra par défaut
+    function startCamera() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.error('Erreur lors de l\'accès à la caméra :', error);
+            });
+    }
+
+    // Appelez la fonction pour activer la caméra lorsque la page est chargée
+    window.onload = startCamera;
+
+    captureButton.addEventListener('click', async () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.width;
+      canvas.height = video.height;
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, video.width, video.height);
+      const dataURL = canvas.toDataURL('image/jpeg');
+
+      // Envoyez la photo au serveur pour prédiction
+      fetch('/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: dataURL }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Affichez la prédiction sur la page
+        predictionValue.innerText = data.prediction;
+
+        // Comparez le choix prédit avec le choix de l'ordinateur
+        const userChoice = data.prediction; // Utilisez la prédiction
+        const computerChoiceOptions = ['Pierre', 'Feuille', 'Ciseaux'];
+        const computerChoice = computerChoiceOptions[Math.floor(Math.random() * 3)];
+        const gameResult = compareChoices(userChoice, computerChoice);
+        const computerChoiceDiv = document.getElementById('computer-choice-value');
+
+        // Mettez à jour les éléments HTML avec les résultats
+        computerChoiceDiv.innerText = computerChoice;
+        result.innerText = gameResult;
+        userScore.innerText = userScoreValue;
+        computerScore.innerText = computerScoreValue;
+      })
+      .catch(error => console.error(error));
+    });
+
+    // Fonction pour comparer les choix
+    function compareChoices(userChoice, computerChoice) {
+      if (userChoice === computerChoice) {
+        return 'Égalité';
+      } else if (
+          (userChoice === 'Pierre' && computerChoice === 'Ciseaux') ||
+          (userChoice === 'Feuille' && computerChoice === 'Pierre') ||
+          (userChoice === 'Ciseaux' && computerChoice === 'Feuille')
+      ) {
+        userScoreValue++;
+        return 'Vous gagnez !';
+      } else {
+        computerScoreValue++;
+        return "L'ordinateur gagne.";
+      }
+    }
+
+    resetButton.addEventListener('click', () => {
+      // Réinitialisez les scores
+      userScoreValue = 0;
+      computerScoreValue = 0;
+      userScore.innerText = userScoreValue;
+      computerScore.innerText = computerScoreValue;
+    });
+
+  </script>
+</html>

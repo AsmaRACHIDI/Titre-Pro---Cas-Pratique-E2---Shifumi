@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jouer avec des boutons</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+</head>
+<body>
+    <h1>Jouer avec des boutons</h1>
+
+    <div id="button-container">
+        <img class="choice-image" src="../static/images/rock.jpg" alt="Pierre" onclick="playGame('Pierre')">
+        <img class="choice-image" src="../static/images/paper.jpg" alt="Feuille" onclick="playGame('Feuille')">
+        <img class="choice-image" src="../static/images/scissors.jpg" alt="Ciseaux" onclick="playGame('Ciseaux')">
+    </div>
+    <p>Votre choix : <span id="user_choice"></span></p>
+    <p>Choix de l'ordinateur : <span id="computer_choice"></span></p>
+    <p>Résultat : <span id="result"></span></p>
+    <p>Score Utilisateur : <span id="user_score"></span></p>
+    <p>Score Ordinateur : <span id="computer_score"></span></p>
+    <div id="button-container">
+        <button onclick="resetScore()">Réinitialiser le Score</button>
+        <button onclick="goToHome()">Revenir à la page d'accueil</button>
+    </div>
+    
+    <script>
+        var userScore = 0;
+        var computerScore = 0;
+
+        function playGame(userChoice) {
+            // Effacer le résultat précédent
+            document.getElementById('user_choice').textContent = '';
+            document.getElementById('computer_choice').textContent = '';
+            document.getElementById('result').textContent = '';
+            
+            // Réinitialiser les scores ici pour éviter de cumuler les scores précédents
+            userScore = 0;
+            computerScore = 0;
+
+            // Effectuer une requête AJAX vers la route /play pour obtenir les résultats
+            fetch('/play', {
+                method: 'POST',
+                body: JSON.stringify({ choice: userChoice }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('user_choice').textContent = data.user_choice;
+                document.getElementById('computer_choice').textContent = data.computer_choice;
+                document.getElementById('result').textContent = data.result;
+                userScore = data.user_score; // Mettre à jour le score de l'utilisateur
+                computerScore = data.computer_score; // Mettre à jour le score de l'ordinateur
+                updateScores(); // Appeler la fonction pour mettre à jour les scores
+            });
+        }
+
+        function updateScores() {
+            // Mettre à jour les éléments HTML du score
+            document.getElementById('user_score').textContent = userScore;
+            document.getElementById('computer_score').textContent = computerScore;
+        }
+        
+        function resetScore() {
+            // Effectuer une requête AJAX vers la route /reset pour réinitialiser les scores côté serveur
+            fetch('/reset', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Afficher un message à l'utilisateur pour indiquer que les scores ont été réinitialisés
+                alert(data.message);
+        
+                // Réinitialiser les scores côté client
+                userScore = 0;
+                computerScore = 0;
+                updateScores();
+            });
+        }        
+
+        function goToHome() {
+            // Rediriger vers la page d'accueil
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
